@@ -12,7 +12,8 @@ private List<FootballMatch> matches;
     }
 		
 	public void startGame(String homeTeam, String awayTeam) {
-		// TODO : Implementation here
+		FootballMatch match = new FootballMatch(homeTeam, awayTeam);
+        matches.add(match);
 		
 	}
 	
