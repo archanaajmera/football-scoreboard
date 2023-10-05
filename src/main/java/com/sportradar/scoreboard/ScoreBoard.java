@@ -58,7 +58,14 @@ public class ScoreBoard {
 	}
     
     public void updateScore(String homeTeam, String awayTeam, int homeScore, int awayScore) {
-        // TODO
+    	
+    	for (FootballMatch match : matches) {
+            if (match.getHomeTeam().equalsIgnoreCase(homeTeam) && match.getAwayTeam().equalsIgnoreCase(awayTeam)) {
+                match.setHomeScore(homeScore);
+                match.setAwayScore(awayScore);
+                break; 
+            }
+        }
     }
     
 	public List<FootballMatch> getSummary() {

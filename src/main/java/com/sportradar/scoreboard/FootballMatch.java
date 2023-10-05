@@ -35,13 +35,21 @@ public class FootballMatch {
 		 return homeScore;
 	 }
 	 
+	 public void setHomeScore(int homeScore) {
+	     this.homeScore = homeScore;
+	 }
+	 
 	 public int getAwayScore() {
 		 return awayScore;
+	 }
+	 
+	 public void setAwayScore(int awayScore) {
+	     this.awayScore = awayScore;
 	 }
 	
 	 @Override
 	 public String toString() {
-		 return homeTeam + " " + homeScore + " - " + awayTeam + " " + awayScore;
+	     return homeTeam + " " + homeScore + " - " + awayTeam + " " + awayScore;
 	 }
 	
 }
