@@ -92,6 +92,14 @@ public class ScoreBoardTest {
         assertEquals("mexico", match.getHomeTeam());
         assertEquals("canada", match.getAwayTeam());
     }
+    
+    @Test
+    public void testFinishGame() {
+        scoreBoard.startGame("Mexico", "Canada");
+
+        scoreBoard.finishGame("Mexico", "Canada");
+        assertEquals(0, scoreBoard.getSummary().size());
+    }
 
 	
 }

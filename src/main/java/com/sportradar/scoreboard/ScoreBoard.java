@@ -35,7 +35,6 @@ public class ScoreBoard {
 		
 	}
 	
-	
 	// Method to check if a game with the given team names already exists.
     private boolean isGameExists(String homeTeam, String awayTeam) {
         for (FootballMatch match : matches) {
@@ -46,8 +45,15 @@ public class ScoreBoard {
         return false;
     }
     
+    public void finishGame(String homeTeam, String awayTeam) {
+		// TODO 
+		
+	}
+    
 	public List<FootballMatch> getSummary() {
 	    return matches;
 	}
+
+	
 	
 }
