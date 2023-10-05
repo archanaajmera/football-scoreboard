@@ -15,18 +15,22 @@ public class ScoreBoard {
 		
 	public void startGame(String homeTeam, String awayTeam) {
 		
-		if(homeTeam.equals(awayTeam)) {
-			System.out.println("Both home team and away team names cann't same");
+		if (homeTeam == null || awayTeam == null || homeTeam.isEmpty() || awayTeam.isEmpty()) {
+            throw new IllegalArgumentException("Both home team and away team names must be provided.");
+        }
+		
+		if(homeTeam.trim().equalsIgnoreCase(awayTeam.trim())) {
+			System.out.println("Home team and away team can not have the same name");
 			return;
 		}
 		
 		if (isGameExists(homeTeam, awayTeam)) {
             // Log a message if a game with the same teams already exists.
-            logger.warning("A game with the same team names already exists: " + homeTeam + " - " + awayTeam);
+            logger.warning("A game with the same teams already exists: " + homeTeam + " - " + awayTeam);
             return;
         }
 		
-		FootballMatch match = new FootballMatch(homeTeam, awayTeam);
+		FootballMatch match = new FootballMatch(homeTeam.trim(), awayTeam.trim());
         matches.add(match);
 		
 	}

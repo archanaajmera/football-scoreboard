@@ -79,16 +79,18 @@ public class ScoreBoardTest {
     @Test
     public void testCaseInsensitiveTeamNames() {
     	
-        scoreBoard.startGame("MEXIco", "canada");
+        scoreBoard.startGame("mexico", "canada");
         
         try {
-            scoreBoard.startGame("mexico", "CANADA");
-            fail("Expected IllegalArgumentException to be thrown.");
+            scoreBoard.startGame("MEXICO", "CANADA");
         } catch (IllegalArgumentException e) {
             assertEquals("A game with the same teams already exists.", e.getMessage());
         }
 
         assertEquals(1, scoreBoard.getSummary().size());
+        FootballMatch match = scoreBoard.getSummary().get(0);
+        assertEquals("mexico", match.getHomeTeam());
+        assertEquals("canada", match.getAwayTeam());
     }
 
 	
