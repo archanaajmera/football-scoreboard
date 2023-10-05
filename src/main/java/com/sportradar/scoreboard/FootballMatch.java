@@ -30,6 +30,14 @@ public class FootballMatch {
 	 public String getAwayTeam() {
 		 return awayTeam;
 	 }
+	 
+	 public int getHomeScore() {
+		 return homeScore;
+	 }
+	 
+	 public int getAwayScore() {
+		 return awayScore;
+	 }
 	
 	 @Override
 	 public String toString() {

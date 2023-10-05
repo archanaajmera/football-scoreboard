@@ -57,10 +57,13 @@ public class ScoreBoard {
         }	
 	}
     
+    public void updateScore(String homeTeam, String awayTeam, int homeScore, int awayScore) {
+        // TODO
+    }
+    
 	public List<FootballMatch> getSummary() {
 	    return matches;
 	}
 
-	
 	
 }

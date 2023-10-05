@@ -96,10 +96,55 @@ public class ScoreBoardTest {
     @Test
     public void testFinishGame() {
         scoreBoard.startGame("Mexico", "Canada");
-
         scoreBoard.finishGame("Mexico", "Canada");
         assertEquals(0, scoreBoard.getSummary().size());
     }
 
-	
+    @Test
+    public void testFinishNonExistentGame() {
+        scoreBoard.startGame("Mexico", "Canada");
+        scoreBoard.finishGame("Mexico", "Italy");
+        assertEquals(1, scoreBoard.getSummary().size());
+    }
+    
+    @Test
+    public void testFinishGameMultipleGames() {
+        scoreBoard.startGame("Mexico", "Canada");
+        scoreBoard.startGame("Spain", "Brazil");
+        scoreBoard.startGame("Germany", "France");
+
+        scoreBoard.finishGame("Spain", "Brazil");
+        assertEquals(2, scoreBoard.getSummary().size());
+    }
+    
+    @Test
+    public void testFinishGameWithWhitespace() {
+        scoreBoard.startGame("  Mexico  ", "  Canada  ");
+        scoreBoard.finishGame("Mexico", "Canada");
+        assertEquals(0, scoreBoard.getSummary().size());
+    }
+
+    @Test
+    public void testFinishGameWithDifferentCase() {
+        scoreBoard.startGame("Mexico", "Canada");
+        scoreBoard.finishGame("mexico", "canada");
+        assertEquals(0, scoreBoard.getSummary().size());
+    }
+    
+    @Test
+    public void testUpdateScore() {
+    	
+        scoreBoard.startGame("Germany", "France");
+        scoreBoard.updateScore("Germany", "France", 2, 2);
+
+        List<FootballMatch> summary = scoreBoard.getSummary();
+        assertEquals(1, summary.size());
+
+        FootballMatch match = summary.get(0);
+        assertEquals("Germany", match.getHomeTeam());
+        assertEquals("France", match.getAwayTeam());
+        assertEquals(2, match.getHomeScore());
+        assertEquals(2, match.getAwayScore());
+    }
+    
 }
