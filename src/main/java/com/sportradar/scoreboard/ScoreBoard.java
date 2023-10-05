@@ -1,6 +1,7 @@
 package com.sportradar.scoreboard;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -46,8 +47,14 @@ public class ScoreBoard {
     }
     
     public void finishGame(String homeTeam, String awayTeam) {
-		// TODO 
-		
+    	Iterator<FootballMatch> iterator = matches.iterator();
+        while (iterator.hasNext()) {
+            FootballMatch match = iterator.next();
+            if (match.getHomeTeam().equalsIgnoreCase(homeTeam) && match.getAwayTeam().equalsIgnoreCase(awayTeam)) {
+                iterator.remove();
+                break;
+            }
+        }	
 	}
     
 	public List<FootballMatch> getSummary() {
