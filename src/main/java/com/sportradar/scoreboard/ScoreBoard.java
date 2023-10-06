@@ -58,15 +58,24 @@ public class ScoreBoard {
 	}
     
     public void updateScore(String homeTeam, String awayTeam, int homeScore, int awayScore) {
-    	
-    	for (FootballMatch match : matches) {
+        if (homeScore < 0 || awayScore < 0) {
+            throw new IllegalArgumentException("Scores cannot be negative.");
+        }
+
+        boolean matchExists = false;
+        for (FootballMatch match : matches) {
             if (match.getHomeTeam().equalsIgnoreCase(homeTeam) && match.getAwayTeam().equalsIgnoreCase(awayTeam)) {
-                match.setHomeScore(homeScore);
-                match.setAwayScore(awayScore);
-                break; 
+                match.updateScore(homeScore, awayScore);
+                matchExists = true;
+                break;
             }
         }
+
+        if (!matchExists) {
+            throw new IllegalArgumentException("Match does not exist for the provided teams.");
+        }
     }
+    
     
 	public List<FootballMatch> getSummary() {
 	    return matches;
