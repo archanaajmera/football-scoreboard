@@ -1,9 +1,12 @@
 package com.sportradar.scoreboard;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class ScoreBoard {
 
@@ -81,12 +84,25 @@ public class ScoreBoard {
 	    return matches;
 	}
 
-	public List<FootballMatch> getSummaryOrderedByTotalScore() {
+	public List<String> getSummaryOrderedByTotalScore() {
 		
-        List<FootballMatch> orderedSummary = new ArrayList<>(matches);
-        // TODO : Implement the logic to get the summary ordered by total score
-
+        List<FootballMatch> orderedMatches = new ArrayList<>(matches);
+       
+        orderedMatches = matches.stream()
+                .sorted(Comparator.comparingInt(matches::indexOf).reversed())
+                .sorted((match1, match2) -> {
+                    int totalScore1 = match1.getHomeScore() + match1.getAwayScore();
+                    int totalScore2 = match2.getHomeScore() + match2.getAwayScore();
+                    return Integer.compare(totalScore2, totalScore1);
+                })
+                .collect(Collectors.toList());
+               
+        List<String> formattedSummary = new ArrayList<>();
+        for (FootballMatch match : orderedMatches) {
+            String summary = match.getHomeTeam() + " " + match.getHomeScore() + " - " + match.getAwayTeam() + " " + match.getAwayScore();
+            formattedSummary.add(summary);
+        }
         
-        return orderedSummary;
+        return formattedSummary;
     }
 }

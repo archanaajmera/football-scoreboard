@@ -243,17 +243,14 @@ public class ScoreBoardTest {
         scoreBoard.startGame("Argentina", "Australia");
         scoreBoard.updateScore("Argentina", "Australia", 3, 1);
 
-        List<FootballMatch> summary = scoreBoard.getSummaryOrderedByTotalScore();
+        List<String> summary = scoreBoard.getSummaryOrderedByTotalScore();
         assertEquals(5, summary.size());
-        // Add assertions for the order of matches in the summary
-        assertEquals("Uruguay 6 - Italy 6", getMatchSummary(summary.get(0)));
-        assertEquals("Spain 10 - Brazil 2", getMatchSummary(summary.get(1)));
-        // Add assertions for the rest of the matches in the expected order
+
+        assertEquals("Uruguay 6 - Italy 6", summary.get(0));
+        assertEquals("Spain 10 - Brazil 2", summary.get(1));
+        assertEquals("Mexico 0 - Canada 5", summary.get(2));
+        assertEquals("Argentina 3 - Australia 1", summary.get(3));
+        assertEquals("Germany 2 - France 2", summary.get(4));
     }
     
- // Helper method to get match summary in the "Team A X - Y Team B" format
-    private String getMatchSummary(FootballMatch match) {
-        return match.getHomeTeam() + " " + match.getHomeScore() + " - " + match.getAwayTeam() + " " + match.getAwayScore();
-    }
-   
 }
