@@ -81,5 +81,12 @@ public class ScoreBoard {
 	    return matches;
 	}
 
-	
+	public List<FootballMatch> getSummaryOrderedByTotalScore() {
+		
+        List<FootballMatch> orderedSummary = new ArrayList<>(matches);
+        // TODO : Implement the logic to get the summary ordered by total score
+
+        
+        return orderedSummary;
+    }
 }

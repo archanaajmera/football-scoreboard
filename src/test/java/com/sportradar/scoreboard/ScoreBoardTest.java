@@ -202,6 +202,58 @@ public class ScoreBoardTest {
         }
     }
     
-      
+    @Test
+    public void testGetSummaryForMultipleMatches() {
+        scoreBoard.startGame("Mexico", "Canada");
+        scoreBoard.startGame("Spain", "Brazil");
+        scoreBoard.updateScore("Mexico", "Canada", 0, 5);
+        scoreBoard.updateScore("Spain", "Brazil", 10, 2);
+        List<FootballMatch> summary = scoreBoard.getSummary();
+        assertEquals(2, summary.size());
+        assertEquals("Mexico", summary.get(0).getHomeTeam());
+        assertEquals("Canada", summary.get(0).getAwayTeam());
+        assertEquals(0, summary.get(0).getHomeScore());
+        assertEquals(5, summary.get(0).getAwayScore());
+        assertEquals("Spain", summary.get(1).getHomeTeam());
+        assertEquals("Brazil", summary.get(1).getAwayTeam());
+        assertEquals(10, summary.get(1).getHomeScore());
+        assertEquals(2, summary.get(1).getAwayScore());
+    }
+    
+    @Test
+    public void testGetSummaryForNoMatches() {
+        // Verify that getSummary returns an empty list when no matches have been started
+        assertEquals(0, scoreBoard.getSummary().size());
+    }
+    
+    @Test
+    public void testGetSummaryOrderedByTotalScore() {
+        scoreBoard.startGame("Mexico", "Canada");
+        scoreBoard.updateScore("Mexico", "Canada", 0, 5);
+        
+        scoreBoard.startGame("Spain", "Brazil");
+        scoreBoard.updateScore("Spain", "Brazil", 10, 2);
+
+        scoreBoard.startGame("Germany", "France");
+        scoreBoard.updateScore("Germany", "France", 2, 2);
+
+        scoreBoard.startGame("Uruguay", "Italy");
+        scoreBoard.updateScore("Uruguay", "Italy", 6, 6);
+
+        scoreBoard.startGame("Argentina", "Australia");
+        scoreBoard.updateScore("Argentina", "Australia", 3, 1);
+
+        List<FootballMatch> summary = scoreBoard.getSummaryOrderedByTotalScore();
+        assertEquals(5, summary.size());
+        // Add assertions for the order of matches in the summary
+        assertEquals("Uruguay 6 - Italy 6", getMatchSummary(summary.get(0)));
+        assertEquals("Spain 10 - Brazil 2", getMatchSummary(summary.get(1)));
+        // Add assertions for the rest of the matches in the expected order
+    }
+    
+ // Helper method to get match summary in the "Team A X - Y Team B" format
+    private String getMatchSummary(FootballMatch match) {
+        return match.getHomeTeam() + " " + match.getHomeScore() + " - " + match.getAwayTeam() + " " + match.getAwayScore();
+    }
    
 }
