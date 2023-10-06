@@ -82,7 +82,7 @@ public class ScoreBoardTest {
         scoreBoard.startGame("mexico", "canada");
         
         try {
-            scoreBoard.startGame("MEXICO", "CANADA");
+            scoreBoard.startGame("MEXiCO", "CaNAdA");
         } catch (IllegalArgumentException e) {
             assertEquals("A game with the same teams already exists.", e.getMessage());
         }
