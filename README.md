@@ -10,7 +10,10 @@ This is a Java library for a Football World Cup Score Board. The library allows 
 
 - This is a Java library without a user interface.
 
-- Concurrency and performance testing are not implemented.
+- Concurrent runs and performance are not measured.
+
+- Compatibility with various java versions is not considered. 
+
 
 ### Functional
 
