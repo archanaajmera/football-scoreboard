@@ -20,3 +20,6 @@ This is a Java library for a Football World Cup Score Board. The library allows 
 - Team names aren't validated; any text string is accepted.
 
 - The `updateScore` method doesn't validate scores for logical consistency or excessively large values.
+
+
+[![ Maven Build ](https://github.com/archanaajmera/football-scoreboard/actions/workflows/maven.yml/badge.svg)](https://github.com/archanaajmera/football-scoreboard/actions/workflows/maven.yml)
